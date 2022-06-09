@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "root@123",
-    "database": "todo_sequelize",
-    "host": "127.0.0.1",
+    "username": "admin",
+    "password": "admin123",
+    "database": "todoListDB",
+    "host": "todolistdb.cva8n8bfmiup.us-east-1.rds.amazonaws.com:3306",
     "dialect": "mysql",
     "operatorsAliases": 0
   }
