@@ -27,6 +27,14 @@ router.get('/edit/:id', isAuthenticated, todoController.getEditTodo)
 router.put('/edit/:id', validation.editTodo, isAuthenticated, todoController.putEditTodo)
 
 // delete todo 
-router.delete('/delete/:id', isAuthenticated, todoController.deleteTodo)
+router.delete('/delete/:id', isAuthenticated, (req,res)=>{
+  const UserId = req.user.id
+  const id = req.params.id
+
+  return Todo.findOne({ where: { id, UserId } })
+    .then(todo => todo.destroy())
+    .then(() => res.redirect('/'))
+    .catch(error => console.log(error))
+})
 
 module.exports = router

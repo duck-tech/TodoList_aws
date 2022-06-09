@@ -11,7 +11,7 @@ module.exports = {
     res.redirect('/')
   },
   getViewOneTodo: (req, res) => {
-    Todo.findOne({
+    Todo.findByPk({
       where: {
         UserId: req.user.id,
         Id: req.params.id
@@ -103,6 +103,7 @@ module.exports = {
         Id: req.params.id
       }
     })
+    console.log(req.params.id)
       .then(todo => res.redirect('/'))
       .catch(error => res.status(422).json(error))
   }
