@@ -50,7 +50,7 @@
       <div class="row animated bounceInUp">
         <a href="/todos/view/{{this.dataValues.id}}" class="col-9 d-flex align-items-center">
           <label class="input-container m-0">
-            <input type="checkbox" name="done" id="done" {{#if this.done}}checked{{/if}} disabled>
+            <input type="checkbox" name="done" id="done" {{#if this.dataValues.done}}checked{{/if}} disabled>
             <span class="checkmark"></span>
             <div class="ml-4 pl-2">
               <h4 class="m-0 p-0">{{this.dataValues.name}}</h4>
