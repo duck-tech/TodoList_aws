@@ -4,7 +4,7 @@ on:
 
 jobs:
   Dockerize:
-    name: Publish Docker
+    name: Publish Docker Hub
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
