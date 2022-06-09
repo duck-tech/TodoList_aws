@@ -5,11 +5,11 @@
     <!--Flash message-->
     {{> messages}}
 
-    <form action="/todos/edit/{{todo.id}}?_method=PUT" method="post" class="pt-3 needs-validation" novalidate>
+    <form action="/todos/edit/{{todo.dataValues.id}}?_method=PUT" method="post" class="pt-3">
       <!--CSRF token-->
       <input type="hidden" name="_csrf" value="{{csrfToken}}">
       <!--Keep user id-->
-      <input type="hidden" name="id" id="id" value="{{todo.id}}">
+      <input type="hidden" name="id" id="id" value="{{todo.dataValues.id}}">
       <!--Form-->
       <div class="form-row">
         <!--Name-->
@@ -17,7 +17,7 @@
           <small class="tool-tip name-tip">Max: 10 letters</small>
           <label for="name" class="sr-only">New todo</label>
           <input type="text" class="form-control" id="name" name="name" placeholder="Enter new todo" minlength="1"
-            maxlength="10" value="{{todo.name}}" required>
+            maxlength="10" value="{{todo.dataValues.name}}" required>
           <div class="invalid-feedback">
             Please fill in a task!
           </div>
@@ -26,7 +26,7 @@
         <div class="col tool-tip-container animateField">
           <small class="tool-tip date-tip">Due Date</small>
           <label for="dueDate" class="sr-only">Due Date</label>
-          <input type="date" class="form-control" id="dueDate" name="dueDate" value="{{todo.dueDate}}" min="2019-01-01"
+          <input type="date" class="form-control" id="dueDate" name="dueDate" value="{{todo.dataValues.dueDate}}" min="2019-01-01"
             max="2025-12-31" required>
           <div class="invalid-feedback">
             Please fill in a task!
@@ -37,18 +37,18 @@
       <div class="form-group mt-2">
         <label for="detail" class="sr-only">Detail</label>
         <textarea class="form-control" name="detail" id="detail" rows="3"
-          placeholder="Give the task some description here..." maxlength="60">{{todo.detail}}</textarea>
+          placeholder="Give the task some description here..." maxlength="60">{{todo.dataValues.detail}}</textarea>
       </div>
       <!--Status-->
       <div class="btn-group btn-group-toggle mb-3 d-flex pt-1 tool-tip-container" data-toggle="buttons">
         <small class="tool-tip status-tip">Current Status</small>
-        <label class="btn btn-sm btn-secondary {{#if todo.done}}active{{/if}}">
+        <label class="btn btn-sm btn-secondary {{#if todo.dataValues.done}}active{{/if}}">
           <input type="radio" name="status" id="done" value="done" autocomplete="off"
-            {{#if todo.done}}checked{{/if}}>Done
+            {{#if todo.dataValues.done}}checked{{/if}}>Done
         </label>
         <label class="btn btn-sm btn-secondary {{#if todo.done}}{{else}}active{{/if}}">
           <input type="radio" name="status" id="notDone" value="notDone" autocomplete="off"
-            {{#if todo.done}}{{else}}checked{{/if}}>Undone
+            {{#if todo.dataValues.done}}{{else}}checked{{/if}}>Undone
         </label>
       </div>
       <hr>

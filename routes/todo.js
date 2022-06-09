@@ -1,5 +1,8 @@
 const express = require('express')
+const db = require('../models')
+const Todo = db.Todo
 const router = express.Router()
+const { convertDate } = require('../date-converter')
 
 // Include server-side validation
 const validation = require('../express-validator')
@@ -21,7 +24,16 @@ router.get('/new', isAuthenticated, todoController.getNewTodo)
 router.post('/new', isAuthenticated, validation.newTodo, todoController.postNewTodo)
 
 // update todo page
-router.get('/edit/:id', isAuthenticated, todoController.getEditTodo)
+router.get('/edit/:id', isAuthenticated, (req,res) => {
+  const userId = req.user.id
+  const todoId = req.params.id
+  return Todo.findOne({ where: { id: todoId, UserId: userId } })
+    .then(todo => {
+        todo.dataValues.dueDate = convertDate(todo.dataValues.dueDate)
+        return res.render('edit', { todo, todoFormCSS: true, formValidation: true })
+      })
+    .catch(err => console.error(err))
+})
 
 // update todo submit
 router.put('/edit/:id', validation.editTodo, isAuthenticated, todoController.putEditTodo)

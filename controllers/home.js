@@ -7,7 +7,6 @@ const { convertDate } = require('../date-converter')
 
 module.exports = {
   getHome: (req, res) => {
-    console.log(req)
     Todo.findAll({
       where: { UserId: req.user.id },
       order: [['dueDate', 'DESC']]

@@ -9,6 +9,7 @@ const { convertDate } = require('../date-converter')
 module.exports = {
   getViewAllTodo: (req, res) => {
     res.redirect('/')
+
   },
   getViewOneTodo: (req, res) => {
     Todo.findByPk({
