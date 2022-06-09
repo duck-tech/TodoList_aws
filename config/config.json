@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "yourpassword",
+    "password": "root@123",
     "database": "todo_sequelize",
     "host": "127.0.0.1",
     "dialect": "mysql",
